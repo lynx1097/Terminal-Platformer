@@ -36,23 +36,15 @@ The game was developed from scratch in **C++** for the *Programming III* course 
 ---
 
 ## 🖼️ Screenshots
+<p align="center">
+  <b>Hero &amp; Weapon Selection</b><br>
+  <img src="screenshots/screenshot-1.jpeg" width="75%">
+</p>
 
-<div align="center">
-<table>
-  <tr>
-    <td align="center">
-      <!-- ▼ Replace src with actual screenshot ▼ -->
-      <img src="/screenshots/screenshot-1.jpeg" height="210" alt="Start Screen"/><br/>
-      <sub><b>Hero &amp; Weapon Selection</b></sub>
-    </td>
-    <td align="center">
-      <!-- ▼ Replace src with actual screenshot ▼ -->
-      <img src="/screenshots/screenshot-2.png" height="210" alt="Gameplay"/><br/>
-      <sub><b>Grid Combat &amp; Exploration</b></sub>
-    </td>
-  </tr>
-</table>
-</div>
+<p align="center">
+  <b>Grid Combat &amp; Exploration</b><br>
+  <img src="screenshots/screenshot-2.png" width="75%">
+</p>
 
 ---
 
