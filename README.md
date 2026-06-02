@@ -10,7 +10,7 @@
 
 <br/>
 <a href="https://lynx1097.github.io/Terminal-Platformer/">
-  <img src="/screenshots/play.png" alt="▶  Play in Browser" width="210"/>
+  <img src="/screenshots/play.png" alt="▶  Play in Browser" height="320"/>
 </a>
 
 <br/><br/>
@@ -42,12 +42,12 @@ The game was developed from scratch in **C++** for the *Programming III* course 
   <tr>
     <td align="center">
       <!-- ▼ Replace src with actual screenshot ▼ -->
-      <img src="/screenshots/screenshot-1.jpeg" width="350" alt="Start Screen"/><br/>
+      <img src="/screenshots/screenshot-1.jpeg" height="210" alt="Start Screen"/><br/>
       <sub><b>Hero &amp; Weapon Selection</b></sub>
     </td>
     <td align="center">
       <!-- ▼ Replace src with actual screenshot ▼ -->
-      <img src="/screenshots/screenshot-2.png" width="350" alt="Gameplay"/><br/>
+      <img src="/screenshots/screenshot-2.png" height="210" alt="Gameplay"/><br/>
       <sub><b>Grid Combat &amp; Exploration</b></sub>
     </td>
   </tr>
