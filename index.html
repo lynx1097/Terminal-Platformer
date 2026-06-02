@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demolition Run</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+    <style>
+        body { 
+            background-color: #111; 
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        /* Remove strict width/height to let the terminal size itself based on the font */
+        #terminal { 
+            padding: 20px;
+            background-color: #000;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+
+   <script>
+        // 1. Setup the Web Terminal
+        // 1. Setup the Web Terminal
+        var term = new Terminal({
+            cursorBlink: true,
+            convertEol: true, 
+            fontFamily: 'Consolas, "Courier New", monospace', 
+            theme: { background: '#000000' },
+            fontSize: 18,   // INCREASE THIS to make the whole game bigger
+            cols: 80,       // Standard terminal width
+            rows: 25        // Standard terminal height
+        });
+        term.open(document.getElementById('terminal'));
+        term.focus();
+
+        // --- NEW FIX: Create a UTF-8 Decoder ---
+        const utf8Decoder = new TextDecoder('utf-8');
+
+        // 2. Intercept Emscripten's stdout
+        var Module = {
+            preRun: [function() {
+                FS.init(
+                    function() { return null; }, // stdin
+                    function(charData) { 
+                        if (charData !== null) {
+                            // Decode the raw bytes safely into UTF-8
+                            term.write(utf8Decoder.decode(new Uint8Array([charData]), {stream: true}));
+                        }
+                    }, // stdout
+                    function(charData) { 
+                        if (charData !== null) {
+                            term.write(utf8Decoder.decode(new Uint8Array([charData]), {stream: true}));
+                        }
+                    }  // stderr
+                );
+            }],
+            onRuntimeInitialized: function() {
+                console.log("Game Loaded!");
+            }
+        };
+
+        // 3. Send JavaScript keystrokes to C++ WebAssembly
+        term.onData(function(data) {
+            if (Module.ccall) {
+                Module.ccall('sendInputToGame', 'null', ['number'], [data.charCodeAt(0)]);
+            }
+        });
+    </script>
+    <script async src="game.js"></script>
+</body>
+</html>
